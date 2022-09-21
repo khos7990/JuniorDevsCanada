@@ -11,6 +11,7 @@ export default class App extends Component {
   };
 
   setUserInState = (incomingUserData) => {
+    console.log(incomingUserData);
     this.setState({ user: incomingUserData });
   };
 

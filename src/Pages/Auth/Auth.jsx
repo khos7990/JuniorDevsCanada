@@ -19,7 +19,11 @@ export default class Auth extends Component {
             {this.state.showLogin ? "Login" : "SignUp"}
           </h3>
 
-          {this.state.showLogin ? <Login /> : <SignUp />}
+          {this.state.showLogin ? (
+            <Login setUserInState={this.props.setUserInState} />
+          ) : (
+            <SignUp setUserInState={this.props.setUserInState} />
+          )}
         </div>
       </div>
     );

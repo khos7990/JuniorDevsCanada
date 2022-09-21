@@ -1,9 +1,9 @@
 import React from "react";
-import { Container, TextField, InputAdornment } from "@mui/material";
+import { Container, TextField, InputAdornment, Button } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import PasswordIcon from "@mui/icons-material/Password";
 
-export default function LoginForm() {
+export default function LoginForm(props) {
   return (
     <div className="signup-parent">
       <Container
@@ -21,6 +21,8 @@ export default function LoginForm() {
       >
         <div id="userNameInput">
           <TextField
+            required
+            type="text"
             sx={{
               borderBottom: "2px solid black",
               marginTop: "10px",
@@ -40,6 +42,8 @@ export default function LoginForm() {
         <div id="password">
           {" "}
           <TextField
+            required
+            type="password"
             sx={{
               borderBottom: "2px solid black",
               marginTop: "10px",
@@ -55,6 +59,11 @@ export default function LoginForm() {
               ),
             }}
           />
+        </div>
+        <div className="SubmitBtn">
+          <Button sx={{ width: "100%" }} color="secondary" variant="contained">
+            Login
+          </Button>
         </div>
       </Container>
     </div>
