@@ -6,7 +6,7 @@ import PasswordIcon from "@mui/icons-material/Password";
 
 import "./Signup.css";
 
-export default function SignUpForm() {
+export default function SignUpForm(props) {
   const [user, setUser] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -17,13 +17,19 @@ export default function SignUpForm() {
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const fetchResponse = await fetch("/api/users/signup", {
+      const fetchResponse = await fetch("api/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: { user: user, email: email, password: password },
+        body: JSON.stringify({ user: user, email: email, password: password }),
       });
+
+      if (!fetchResponse.ok) throw new Error("Fetch Failed");
+      let token = await fetchResponse.json();
+      localStorage.setItem("token", token);
+      const userDoc = JSON.parse(atob(token.split(".")[1])).user;
+      props.setUserInState(userDoc);
     } catch (err) {
-      console.log(err.message);
+      console.log(err);
     }
   };
 
@@ -38,6 +44,7 @@ export default function SignUpForm() {
           height: "300px",
           position: "relative",
           display: "flex",
+
           flexWrap: "wrap",
         }}
       >
@@ -135,6 +142,7 @@ export default function SignUpForm() {
               sx={{ width: "100%" }}
               color="secondary"
               variant="contained"
+              type="submit"
             >
               Sign Up
             </Button>

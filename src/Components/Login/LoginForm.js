@@ -5,7 +5,7 @@ import PasswordIcon from "@mui/icons-material/Password";
 
 export default function LoginForm(props) {
   return (
-    <div className="signup-parent">
+    <div className="login-parent">
       <Container
         className="login-container"
         maxWidth="sm"
