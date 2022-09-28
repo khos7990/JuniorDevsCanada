@@ -17,10 +17,14 @@ export default function SignUpForm(props) {
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const fetchResponse = await fetch("api/users/signup", {
+      const fetchResponse = await fetch("/api/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ user: user, email: email, password: password }),
+        body: JSON.stringify({
+          user: user,
+          email: email,
+          password: password,
+        }),
       });
 
       if (!fetchResponse.ok) throw new Error("Fetch Failed");
