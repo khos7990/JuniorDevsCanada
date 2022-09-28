@@ -1,4 +1,4 @@
-import Home from "../src/Pages/Home";
+import Home from "./Pages/Home/Home";
 import Auth from "./Pages/Auth/Auth";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -33,7 +33,10 @@ export default class App extends Component {
       <div className="App">
         {this.state.user ? (
           <Routes>
-            <Route path="/" element={Home} />
+            <Route
+              path="/"
+              element={<Home setUserInState={this.setUserInState} />}
+            />
           </Routes>
         ) : (
           <Auth setUserInState={this.setUserInState} />
