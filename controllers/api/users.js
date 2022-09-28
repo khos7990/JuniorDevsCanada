@@ -8,10 +8,10 @@ module.exports = {
 };
 
 async function create(req, res) {
-  console.log("hitting");
   try {
+    console.log(req.body);
     const user = await User.create({
-      name: req.body.name,
+      user: req.body.user,
       email: req.body.email,
       password: req.body.password,
     });
